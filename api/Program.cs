@@ -16,6 +16,7 @@ app.UseCors();
 app.MapHealthEndpoints();
 app.MapSearchEndpoints();
 app.MapTreeCompatEndpoints();
+app.MapChildrenEndpoints();
 
 app.MapGet("/ping", () => "pong");
 

@@ -45,9 +45,6 @@ export default function App() {
         }}
       >
         <h1 style={{ margin: 0, fontSize: 24 }}>ImageNet Taxonomy Explorer</h1>
-        <span style={{ fontSize: 12, opacity: 0.6 }}>
-          API: {import.meta.env.VITE_API_URL || "relative"}
-        </span>
       </header>
 
       <SearchBox onSelect={onOpenChild} />
@@ -66,7 +63,7 @@ export default function App() {
 
       <footer style={{ marginTop: 16, fontSize: 12, opacity: 0.6 }}>
         Tip: use search to jump directly to any path, then click “Open” to
-        explore deeper.
+        explore deeper :)
       </footer>
     </div>
   );

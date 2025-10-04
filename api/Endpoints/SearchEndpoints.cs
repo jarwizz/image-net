@@ -7,7 +7,6 @@ public static class SearchEndpoints
 {
     public static void MapSearchEndpoints(this WebApplication app)
     {
-        // GET /search?q=rose&limit=50
         app.MapGet("/search", async (
             [FromQuery] string? q,
             [FromQuery] int? limit,
