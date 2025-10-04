@@ -82,7 +82,9 @@ export default function SearchBox({ onSelect }: Props) {
                 }}
                 onMouseDown={(e) => e.preventDefault()}
               >
-                <div style={{ fontSize: 14 }}>{r.name}</div>
+                <div style={{ fontSize: 14 }}>
+                  {r.name.split(">").pop() || r.name}
+                </div>
                 <div style={{ fontSize: 12, opacity: 0.6 }}>size: {r.size}</div>
               </div>
             ))

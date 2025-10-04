@@ -93,7 +93,7 @@ export default function NodePanel({
                   </span>
                 )}
                 <div style={{ fontWeight: 500, margin: "0 20px 0 0" }}>
-                  {child.name}
+                  {child.name.split(" > ").pop() || child.name}
                 </div>
               </div>
               <div style={{ fontVariantNumeric: "tabular-nums" }}>
