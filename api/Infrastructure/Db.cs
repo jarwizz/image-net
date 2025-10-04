@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
 
 namespace Api.Infrastructure;
@@ -9,10 +7,8 @@ public static class Db
     public static void AddPostgres(this IServiceCollection services, IConfiguration _)
     {
         var cs = BuildConnectionString();
-
         var dsBuilder = new NpgsqlDataSourceBuilder(cs);
         var dataSource = dsBuilder.Build();
-
         services.AddSingleton(dataSource);
     }
 

@@ -1,4 +1,3 @@
-// src/api.ts
 export type TreeResponse = {
   name: string;
   size: number;

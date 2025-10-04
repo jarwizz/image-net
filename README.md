@@ -21,3 +21,12 @@ docker compose up -d --build
 ### Open the link and use the Application
 
 <http://localhost:5173/>
+
+### What is the complexity of your algorithm (in big O notation)?
+
+N = number of rows
+L = average number of segments per path (tree depth)
+K = rows in a queried subtree
+
+Whole dataset: O(N\*L)
+Subtree only: O(K\*L)

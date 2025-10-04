@@ -1,4 +1,3 @@
-using Api.Domain;
 using Api.Endpoints;
 using Api.Infrastructure;
 using Api.Data;
@@ -15,8 +14,8 @@ var app = builder.Build();
 app.UseCors();
 
 app.MapHealthEndpoints();
-app.MapTreeEndpoints();
 app.MapSearchEndpoints();
+app.MapTreeCompatEndpoints();
 
 app.MapGet("/ping", () => "pong");
 
