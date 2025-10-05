@@ -1,4 +1,3 @@
-// src/components/TreeView.tsx
 import type { TreeItem } from "../lib/tree";
 import TreeNode from "./TreeNode";
 

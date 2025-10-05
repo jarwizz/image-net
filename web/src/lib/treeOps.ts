@@ -1,4 +1,3 @@
-// src/lib/treeOps.ts
 import type { TreeItem } from "./tree";
 
 export function updateNode(
@@ -42,7 +41,6 @@ function mergeByPath(existing: TreeItem[], incoming: TreeItem[]): TreeItem[] {
   return Array.from(map.values());
 }
 
-// add to the file (keep existing code)
 export function setExpanded(root: TreeItem, path: string, isExpanded: boolean): TreeItem {
   return updateNode(root, path, (node) => ({ ...node, isExpanded }));
 }

@@ -1,4 +1,3 @@
-// src/lib/tree.ts
 export type TreeItem = {
   name: string;
   size: number;

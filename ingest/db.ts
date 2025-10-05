@@ -53,7 +53,6 @@ export const connectOrCreateDb = async (): Promise<pg.Client> => {
 };
 
 export const ensureSchema = async (client: pg.Client): Promise<void> => {
-  // destructive recreate is simplest when changing PKs/columns
   await client.query(`DROP TABLE IF EXISTS imagenet_paths;`);
   await client.query(`
     CREATE TABLE imagenet_paths (

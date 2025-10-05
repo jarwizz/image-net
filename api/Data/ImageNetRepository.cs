@@ -1,4 +1,3 @@
-// Api/Data/ImageNetRepository.cs
 using Npgsql;
 
 namespace Api.Data;
