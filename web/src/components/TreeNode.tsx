@@ -22,7 +22,7 @@ const TreeNode = ({
           alignItems: "center",
           gap: 8,
           padding: "8px 6px",
-          borderBottom: level === 0 ? "1px solid #f1f1f1" : "none",
+          borderBottom: "1px solid #f1f1f1",
           justifyContent: "space-between",
         }}
       >
