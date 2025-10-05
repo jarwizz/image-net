@@ -40,3 +40,9 @@
 .read-the-docs {
   color: #888;
 }
+
+.tw-highlight-hit {
+  outline: 2px solid rgba(99, 241, 106, 0.6);
+  background: rgba(99, 241, 106, 0.08);
+  transition: background 300ms ease, outline-color 300ms ease;
+}

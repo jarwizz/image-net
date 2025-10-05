@@ -10,8 +10,6 @@ export type TreeResponse = {
   }>;
 };
 
-export type SearchRow = { name: string; size: number };
-
 const BASE = import.meta.env.VITE_API_URL?.replace(/\/+$/, "") || "";
 
 async function get<T>(url: string): Promise<T> {
@@ -33,3 +31,5 @@ export function search(q: string, limit = 20): Promise<SearchRow[]> {
   u.searchParams.set("limit", String(limit));
   return get<SearchRow[]>(u.pathname + u.search);
 }
+
+export type SearchRow = { name: string; size: number; path: string };

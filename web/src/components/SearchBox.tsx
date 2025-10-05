@@ -4,9 +4,10 @@ import { useDebounced } from "../hooks/useDebounced";
 
 type Props = {
   onSelect: (path: string) => void;
+  onClearHighlight?: () => void;
 };
 
-export default function SearchBox({ onSelect }: Props) {
+export default function SearchBox({ onSelect, onClearHighlight }: Props) {
   const [q, setQ] = useState("");
   const dq = useDebounced(q, 300);
   const [results, setResults] = useState<SearchRow[]>([]);
@@ -15,6 +16,7 @@ export default function SearchBox({ onSelect }: Props) {
   useEffect(() => {
     if (!dq) {
       setResults([]);
+      onClearHighlight?.();
       return;
     }
     let alive = true;
@@ -24,7 +26,7 @@ export default function SearchBox({ onSelect }: Props) {
     return () => {
       alive = false;
     };
-  }, [dq]);
+  }, [dq, onClearHighlight]);
 
   return (
     <div style={{ position: "relative", marginBottom: 12 }}>
@@ -69,7 +71,9 @@ export default function SearchBox({ onSelect }: Props) {
               <div
                 key={r.name}
                 onClick={() => {
-                  onSelect(r.name);
+                  const targetPath: string =
+                    "path" in r && typeof r.path === "string" ? r.path : r.name;
+                  onSelect(targetPath);
                   setOpen(false);
                   setQ("");
                   setResults([]);

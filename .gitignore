@@ -29,3 +29,5 @@ Thumbs.db
 
 ingest/node_modules
 web/node_modules
+
+api/obj/

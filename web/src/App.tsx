@@ -1,41 +1,15 @@
-import { useEffect, useState } from "react";
-import { fetchTree, type TreeResponse } from "./api";
+import { useTreeData } from "./hooks/useTreeData";
+import { useOpenPath } from "./hooks/useOpenPath.ts";
 import SearchBox from "./components/SearchBox";
-import Breadcrumbs from "./components/Breadcrumbs";
-import NodePanel from "./components/NodePanel";
+import TreeView from "./components/TreeView";
 import "./App.css";
 
 export default function App() {
-  const [currentPath, setCurrentPath] = useState<string>("");
-  const [node, setNode] = useState<TreeResponse | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let alive = true;
-    setLoading(true);
-    setError(null);
-    fetchTree(currentPath)
-      .then((data) => {
-        if (!alive) return;
-        setNode(data);
-      })
-      .catch((e) => {
-        if (!alive) return;
-        setError(e instanceof Error ? e.message : String(e));
-      })
-      .finally(() => alive && setLoading(false));
-    return () => {
-      alive = false;
-    };
-  }, [currentPath]);
-
-  const onOpenChild = (path: string) => {
-    setCurrentPath(path);
-  };
+  const { root, error, expandNode, collapseNode } = useTreeData();
+  const { openPath, clearHighlight } = useOpenPath(root, expandNode);
 
   return (
-    <div style={{ maxWidth: 960, margin: "0 auto", padding: 16 }}>
+    <div style={{ margin: "0 auto", padding: 16 }}>
       <header
         style={{
           display: "flex",
@@ -47,23 +21,21 @@ export default function App() {
         <h1 style={{ margin: 0, fontSize: 24 }}>ImageNet Taxonomy Explorer</h1>
       </header>
 
-      <SearchBox onSelect={onOpenChild} />
-      <Breadcrumbs
-        currentPath={currentPath}
-        rootName={node?.name}
-        rootPath={node?.path}
-        onOpen={onOpenChild}
-      />
-      <NodePanel
-        node={node}
-        loading={loading}
-        error={error}
-        onOpenChild={onOpenChild}
+      <SearchBox
+        onSelect={(path) => openPath(path)}
+        onClearHighlight={clearHighlight}
       />
 
-      <footer style={{ marginTop: 16, fontSize: 12, opacity: 0.6 }}>
-        Tip: use search to jump directly to any path, then click “Open” to
-        explore deeper :)
+      <TreeView
+        root={root}
+        error={error}
+        onExpand={expandNode}
+        onCollapse={collapseNode}
+      />
+
+      <footer style={{ marginTop: 16, fontSize: 12, opacity: 0.5 }}>
+        Tip: Click “Open” to append children under a node. Already opened
+        branches stay visible.
       </footer>
     </div>
   );
